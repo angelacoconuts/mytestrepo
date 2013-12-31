@@ -1,4 +1,77 @@
-line1
-line2
-line3
-line4
+Construct Nodes
+	1. Find country list
+List of country in...:
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT * WHERE {
+?subject rdf:type <http://dbpedia.org/class/yago/EuropeanCountries>.
+?subject rdfs:label ?label.
+?subject rdfs:comment ?abstract.
+FILTER ((lang(?abstract) = 'zh' && lang(?label) = 'zh') || (lang(?abstract) = 'en' && lang(?label) = 'en'))
+}
+
+http://dbpedia.org/class/yago/SouthAsianCountries
+http://dbpedia.org/class/yago/CentralAsianCountries
+http://dbpedia.org/class/yago/EastAsianCountries
+http://dbpedia.org/class/yago/SoutheastAsianCountries
+http://dbpedia.org/class/yago/AfricanCountries
+http://dbpedia.org/class/yago/NorthernAmericanCountries
+http://dbpedia.org/class/yago/SouthAmericanCountries
+http://dbpedia.org/class/yago/CentralAmericanCountries
+http://dbpedia.org/class/yago/OceanianCountries
+http://dbpedia.org/class/yago/IslandCountries
+
+Country Basic
+SELECT * WHERE {
+?subject rdf:type <http://dbpedia.org/class/yago/EuropeanCountries>.
+?subject rdfs:label ?label
+OPTIONAL {?subject <http://dbpedia.org/ontology/capital> ?capital.
+?subject <http://dbpedia.org/ontology/currency> ?currency.
+?subject <http://dbpedia.org/ontology/officialLanguage> ?language}
+FILTER (lang(?label) = 'en')
+}
+
+Cities and national parks in a country
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+
+SELECT * WHERE {
+{?location dbpedia-owl:country <http://dbpedia.org/resource/Nepal>.}
+UNION
+{?location dbpedia-owl:location <http://dbpedia.org/resource/Nepal>.}
+{?location rdf:type <http://dbpedia.org/ontology/PopulatedPlace>.}
+UNION
+{?location rdf:type <http://dbpedia.org/ontology/ProtectedArea>.}
+OPTIONAL{?location foaf:homepage ?homepage.}
+OPTIONAL{?location rdfs:label ?label_zh.
+?location rdfs:comment ?abstract_zh.
+FILTER (lang(?label_zh) = 'zh' && lang(?abstract_zh) = 'zh')}
+?location rdfs:label ?label_en.
+?location rdfs:comment ?abstract_en.
+FILTER (lang(?label_en) = 'en' && lang(?abstract_en) = 'en')
+}
+
+
+	1. Find cities base on country list
+	2. Find populated place base on country list
+	3. Find places of interest base on city list and populated places list
+	4. Find basic information about countries, cities, places, POI
+	(wiki travel, google, dbpedia)
+	5. Find pictures associated with places (property)
+	6. *Find typical objects associated with places  (souvenir, signature delicacy)(as property or as sub graph)
+	7. *Find hotel list
+	8. *Find restaurant list
+
+Construct Relationships
+	1. Find flights, train, metro, ships, bus, taxi, tuk-tuk, walking etc. information
+	Distance, Duration, Cost, Schedule, Operator
+	2. Belonging & containing information among nodes (places)
+
+Open Considerations:
+How to model:
+Activities
+Events
+Tags on places (adjectives: romantic, exotic; themes: honeymoon, photography, wildlife, food)
+Categorical information about places (nouns: beach, forest, cultural heritage, modern museum etc.)
