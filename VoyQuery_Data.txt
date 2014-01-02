@@ -1,0 +1,17 @@
+URI	MAP_BINDING	LAST_UPD_TSD
+http://dbpedia.org/class/yago/EuropeanCountries	continent	
+http://dbpedia.org/class/yago/SouthAsianCountries	continent	
+http://dbpedia.org/class/yago/CentralAsianCountries	continent	
+http://dbpedia.org/class/yago/EastAsianCountries	continent	
+http://dbpedia.org/class/yago/SoutheastAsianCountries	continent	
+http://dbpedia.org/class/yago/AfricanCountries	continent	
+http://dbpedia.org/class/yago/NorthernAmericanCountries	continent	
+http://dbpedia.org/class/yago/SouthAmericanCountries	continent	
+http://dbpedia.org/class/yago/CentralAmericanCountries	continent	
+http://dbpedia.org/class/yago/OceanianCountries	continent	
+http://dbpedia.org/class/yago/IslandCountries	continent	
+http://dbpedia.org/resource/China	country	
+http://dbpedia.org/resource/Tianhe_District	residence	
+http://dbpedia.org/resource/Wuyanling_National_Nature_Reserve	reserve	
+http://dbpedia.org/resource/Category:Visitor_attractions_in_China	attractions_category_country	
+http://dbpedia.org/resource/Category:Visitor_attractions_in_Xinjiang	attractions_category_sub_country	
