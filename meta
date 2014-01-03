@@ -1,0 +1,13 @@
+"SELECT ?category WHERE {
+?category rdf:type skos:Concept.
+?category skos:broader ?broader.
+?broader rdfs:label ?label.
+FILTER regex(?label,""Visitor attractions in"")
+}"
+
+"SELECT ?category WHERE {
+?category rdfs:subClassOf ?parentclass. 
+?parentclass rdfs:subClassOf <http://dbpedia.org/class/yago/Tract108673395>. 
+}"
+
+SELECT ?category WHERE {?category rdf:type skos:Concept. FILTER STRSTARTS(STR(?category),"http://dbpedia.org/resource/Category:Hot_springs")}
