@@ -13,6 +13,39 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 
 public class App {
+	
+		public static Set<String> findCommonString(ArrayList<String> inputStrList,
+			String trimStartPattern, int commonStrThres) {
+
+		Map<String, Integer> strCount = new HashMap<String, Integer>();
+		List<String> removalArray = new ArrayList<String>();
+		
+		for (String str : inputStrList) {
+
+			String pre = str.split(trimStartPattern)[0];
+
+			if (strCount.containsKey(pre))
+				strCount.put(pre, strCount.get(pre) + 1);
+			else
+				strCount.put(pre, 1);
+		}
+
+		if (commonStrThres > 0)
+			for (String key : strCount.keySet())
+				if (strCount.get(key) < commonStrThres)
+					removalArray.add(key);
+
+		for (String removeStr : removalArray)
+			strCount.remove(removeStr);
+			
+		System.out.println(strCount.keySet().size());
+		for (String key1 : strCount.keySet())
+			System.out.println(key1); 
+
+		return strCount.keySet();
+		
+	}
+
 
 	public static ResultSet execParameterisedSelect(String serviceEndpoint,
 			String sparqlQueryString, ArrayList<String> prefixList, Map<String, String> initialBindingSet) {
