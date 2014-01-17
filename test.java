@@ -3,6 +3,81 @@ import java.util.List;
 
 public class App {
 
+	public static void findNearestPOI() {
+
+		String[] tokens = "Get a Ngong Ping of Hong Kong Island on Victoria Peak atop the Congo Peak Tower Ever sinc El Nido e War II. At the Pe offering shops, fine dining and museums. The Peak Tram runs from Central to the bottom of the Peak Tower. Although views of Kowloon and Victoria Harbour can be stunning, be prepared for the view to be spoilt by air pollution. There is no point in spending extra money to visit the observation deck of the Peak Tower. There are a number of nice walks around the Peak Tower that offers similar, if not nicer, vof it is the Lion Pavilion Lookout on Findlay Road, about one minute walk from The Peak Tower. You every night. On sunny days, you can find an old man outside the pavilion, offering rickshaw ride along Findlay Road. A 10 minutes ride costs HK$100. Although the Peak Tram offers a direct route to The Peak, a more picturesque and cheaper (though slower) way of reaching it is by taking bus 15 (not 15C) from the Star Ferry pier in Central. Not only is it cheaper but, as the bus snakes up the mountain, you can enjoy beautiful views of both sides of Hong Kong island and passing the territory's priciest neighbourhoods. For hikers, nature lovers and other adventurous folks: you can also go up walking the Old Peak Rd. which starts just south of the Hong Kong Zoological and Botanical Gardens, is steep at times, but from the gardens it can be conquered all the way to the Peak in about 30 minutes (the path can be found clearly in Google maps)."
+				.split(" ");
+		List<String> NEList = new ArrayList<String>();
+
+		float discardThreshold = (float) 0.8;
+		float acceptThreshold = (float) 0.95;
+		int pointer = 0;
+		long start_time = System.currentTimeMillis();
+
+		while (pointer < tokens.length) {
+
+			String query = "", nextQuery = "";
+			boolean shouldTakeInNextToken = true;
+			int i = 0;
+			float nextMatchScore = 0, matchScore = 0;
+
+			while (pointer + i < tokens.length && shouldTakeInNextToken) {
+
+				nextQuery += tokens[pointer + i];
+				nextMatchScore = findMaximumMatchScore(nextQuery);
+
+				if ((nextMatchScore < matchScore && disCal.getDistance(query,
+						nextMatchResult) > disCal.getDistance(nextQuery,
+						nextMatchResult))
+						|| (nextMatchScore < discardThreshold && !StringUtils
+								.left(nextQuery, 2).equals(
+										StringUtils.left(nextMatchResult, 2))))
+					shouldTakeInNextToken = false;
+				else {
+					query = nextQuery;
+					nextQuery = nextQuery + " ";
+					matchScore = nextMatchScore;
+					matchResult = nextMatchResult;
+					i++;
+				}
+
+			}
+
+			if (matchScore > acceptThreshold) {
+				// Return previous token
+				NEList.add(matchResult);
+				pointer += i;
+			} else
+				pointer++;
+
+		}
+
+		System.out.println("Process time: "
+				+ (System.currentTimeMillis() - start_time));
+		System.out.println(NEList.toString());
+
+	}
+
+	private static float findMaximumMatchScore(String query) {
+
+		float matchScore = 0;
+
+		for (String candidate : findCandidateResultSet(query)) {
+
+			float nextMatchScore = disCal.getDistance(query, candidate);
+
+			if (nextMatchScore > matchScore) {
+				matchScore = nextMatchScore;
+				nextMatchResult = candidate;
+			}
+
+		}
+
+		return matchScore;
+
+	}
+
+
 	public static void main(String[] args) {
 		// AccessFlickr flickr = new AccessFlickr();
 		// flickr.searchPhoto("Hong Kong Disneyland","4,5,6");
