@@ -1,0 +1,128 @@
+<html ng-app="graphieeApp">
+	<head>
+		<link rel="stylesheet" href="P://Personal/bootstrap_cus.css">
+		<link rel="stylesheet" href="P://Personal/bootstrap.min.css">
+		<script src="P://Personal/angular.js"></script>
+		<script src="P://Personal/controller.js"></script>
+	</head>
+	<body ng-controller="poiPageCtrl">
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">GraphieE</a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse">
+						<div class="col-md-4 pull-right">
+							<form class="navbar-form" role="search">
+								<div class="form-group">
+									<div class="input-group">
+										<span id="searchIcon" class="input-group-addon">
+											<span class="glyphicon glyphicon-search"></span>
+										</span>
+										<input id="searchBox" type="text" class="form-control" placeholder="Casablanca">
+									</div>
+								</div>
+							</form>
+						</div>
+
+
+						<ul class="nav navbar-nav navbar-left">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Top Destination <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Europe</a></li>
+									<li><a href="#">South America</a></li>
+									<li><a href="#">North America</a></li>
+									<li><a href="#">Asia</a></li>
+									<li><a href="#">Africa</a></li>
+									<li><a href="#">Oceania</a></li>
+									<li class="divider"></li>
+								</ul>
+							</li>
+							<li><a href="#">Theme</a></li>
+							<li><a href="#">Itinerary</a></li>
+						</ul>
+					</div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</div>
+		</nav>
+
+
+		<div class="container" style="width: 95%;">
+
+			<div class="row">
+				<div class="col-lg-12">
+
+					<div class="thumbnail" id="poiPicTextBox">
+
+						<div class="coverPicBox">
+
+							<img id="coverPic" src="{{mainPicSrc}}" />
+
+							<div id="addBtn" class="posAbs">
+								<span class="glyphicon glyphicon-plus glyphicon-lg" ng-click="showActionList()"></span>
+							</div>
+
+							<div id="addActions" class="posAbs" ng-show="showAddAction">
+								<button type="button" class="btn btn-default btn-block"><span>Add to Favorites</span></button>
+								<button type="button" class="btn btn-default btn-block"><span>Add to Itinerary</span></button>
+							</div>
+
+							<div id="coverPicDesc" class="posAbs">
+								<h1>{{poiTle}}<small>{{mainPicTle}}</small></h1>
+								<ul class="list-inline tag-list">
+									<li><a ng-repeat="tag in tags" class="tag" href={{tag.href}} style="background-color: {{tag.color}}">{{tag.name}}</a>
+									</li>
+								</ul>
+								<p>{{poiDesc}}</p>
+							</div>
+						</div><!-- /.Thumbnail -->
+
+						<div class="imageBar">
+							<img ng-repeat="picture in pics" src="{{picture.src}}" ng-click="setImage(picture)">
+						</div>
+
+						<div class="page-scroll" style="margin: 12px 0 0 0; border-bottom: 1px solid #ddd">
+							<a href="#seeAlso">
+								<span class="glyphicon glyphicon-chevron-down glyphicon-lg" style="color: #CCC;"></span>
+							</a>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		<!-- /.container -->
+
+		<!--/div-->
+
+		<div class="container section" id="seeAlso" style="width: 80%;">
+			<div class="section-title">
+				<h1>See Also...</h1>
+				<h4>Things to do, itineraries, food, similar places... for {{poiTle}}</h4>
+			</div>
+
+			<div class="section-div" ng-repeat="entity in related">
+				<img height="150px" width="200px" src="{{entity.img}}">
+				<h3>{{entity.name}}</h3>
+				<p>{{entity.desc}}</p>
+			</div>
+
+		</div>
+
+	</body>
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="P://Personal/bootstrap.min.js"></script>
+</html>
