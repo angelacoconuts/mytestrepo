@@ -1,0 +1,184 @@
+<html ng-app="graphieeApp">
+	<head>
+		<link rel="stylesheet" href="P://Personal/bootstrap_cus.css">
+		<link rel="stylesheet" href="P://Personal/bootstrap.min.css">
+		<script src="P://Personal/angular.js"></script>
+		<script src="P://Personal/controller.js"></script>
+	</head>
+	<body ng-controller="poiPageCtrl">
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">GraphieE</a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse">
+						<div class="col-md-4 pull-right">
+							<form class="navbar-form" role="search">
+								<div class="form-group">
+									<div class="input-group">
+										<span id="searchIcon" class="input-group-addon">
+											<span class="glyphicon glyphicon-search"></span>
+										</span>
+										<input id="searchBox" type="text" class="form-control" placeholder="Casablanca">
+									</div>
+								</div>
+							</form>
+						</div>
+
+
+						<ul class="nav navbar-nav navbar-left">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Top Destination <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Europe</a></li>
+									<li><a href="#">South America</a></li>
+									<li><a href="#">North America</a></li>
+									<li><a href="#">Asia</a></li>
+									<li><a href="#">Africa</a></li>
+									<li><a href="#">Oceania</a></li>
+									<li class="divider"></li>
+								</ul>
+							</li>
+							<li><a href="#">Theme</a></li>
+							<li><a href="#">Itinerary</a></li>
+						</ul>
+					</div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</div>
+		</nav>
+
+		<div id="dummyNavBarSpace" style="height: 80px;">
+		</div>
+
+		<div class="container" data-spy="scroll" data-target="#myScrollspy">
+			<div>
+				<ul id="myScrollspy" class="nav nav-pills nav-justified affix" data-spy="affix" style="background-color: #fff;">
+					<li><a href="#day-one" style="color: #555; border-right: solid 1.5px #ddd">Day 1</a></li>
+					<li><a href="#day-two" style="color: #555; border-right: solid 1.5px #ddd">Day 2</a></li>
+					<li><a href="#day-three" style="color: #555; border-right: solid 1.5px #ddd">Day 3</a></li>
+					<li><a href="#day-four" style="color: #555; border-right: solid 1.5px #ddd">Day 4</a></li>
+					<li><a href="#day-five" style="color: #555; border-right: solid 1.5px #ddd">Day 5</a></li>
+					<li><a href="#day-six" style="color: #555; border-right: solid 1.5px #ddd">Day 6</a></li>
+					<li><a href="#day-seven" style="color: #555; border-right: solid 1.5px #ddd">Day 7</a></li>
+				</ul>
+			</div>
+
+			<div class="container section-small" id="day-one">
+
+				<div class="section-title">
+					<h1>Day 1</h1>
+					<h4>Things to do, itineraries, food, similar places... for {{poiTle}}</h4>
+				</div>
+
+				<div class="section-div-small" ng-repeat="entity in related">
+					<img height="90px" width="120px" src="{{entity.img}}">
+					<h3>{{entity.name}}</h3>
+					<p>{{entity.desc}}</p>
+				</div>
+
+			</div>
+
+			<div class="container section-small" id="day-two">
+
+				<div class="section-title">
+					<h1>Day 2</h1>
+					<h4>Things to do, itineraries, food, similar places... for {{poiTle}}</h4>
+				</div>
+
+				<div class="section-div-small" ng-repeat="entity in related">
+					<img height="90px" width="120px" src="{{entity.img}}">
+					<h3>{{entity.name}}</h3>
+					<p>{{entity.desc}}</p>
+				</div>
+
+			</div>
+
+			<div class="container section-small" id="day-three">
+
+				<div class="section-title">
+					<h1>Day 3</h1>
+					<h4>Things to do, itineraries, food, similar places... for {{poiTle}}</h4>
+				</div>
+
+				<div class="section-div-small" ng-repeat="entity in related">
+					<img height="90px" width="120px" src="{{entity.img}}">
+					<h3>{{entity.name}}</h3>
+					<p>{{entity.desc}}</p>
+				</div>
+
+			</div>
+
+			<div class="container section-small" id="day-four">
+
+				<div class="section-title">
+					<h1>Day 4</h1>
+					<h4>Things to do, itineraries, food, similar places... for {{poiTle}}</h4>
+				</div>
+
+				<div class="section-div-small" ng-repeat="entity in related">
+					<img height="90px" width="120px" src="{{entity.img}}">
+					<h3>{{entity.name}}</h3>
+					<p>{{entity.desc}}</p>
+				</div>
+
+			</div>
+
+			<div class="container section-small" id="day-five">
+
+				<div class="section-title">
+					<h1>Day 5</h1>
+					<h4>Things to do, itineraries, food, similar places... for {{poiTle}}</h4>
+				</div>
+
+				<div class="section-div-small" ng-repeat="entity in related">
+					<img height="90px" width="120px" src="{{entity.img}}">
+					<h3>{{entity.name}}</h3>
+					<p>{{entity.desc}}</p>
+				</div>
+
+			</div>
+			<div class="container section-small" id="day-six">
+
+				<div class="section-title">
+					<h1>Day 6</h1>
+					<h4>Things to do, itineraries, food, similar places... for {{poiTle}}</h4>
+				</div>
+
+				<div class="section-div-small" ng-repeat="entity in related">
+					<img height="90px" width="120px" src="{{entity.img}}">
+					<h3>{{entity.name}}</h3>
+					<p>{{entity.desc}}</p>
+				</div>
+
+			</div>
+			<div class="container section-small" id="day-seven">
+
+				<div class="section-title">
+					<h1>Day 7</h1>
+					<h4>Things to do, itineraries, food, similar places... for {{poiTle}}</h4>
+				</div>
+
+				<div class="section-div-small" ng-repeat="entity in related">
+					<img height="90px" width="120px" src="{{entity.img}}">
+					<h3>{{entity.name}}</h3>
+					<p>{{entity.desc}}</p>
+				</div>
+
+			</div>
+
+		</div>
+
+	</body>
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="P://Personal/bootstrap.min.js"></script>
+</html>
