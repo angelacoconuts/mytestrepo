@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="epic">
+<head>
+<link href="P://MyDocuments/EWM/Mockup/Library/vendor/bootstrap.min.css" rel="stylesheet">
+<link href="P://MyDocuments/EWM/Mockup/Library/main.css" rel="stylesheet">
+<link href="P://MyDocuments/EWM/Mockup/Library/ptfl_treemap.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Fanwood+Text:400italic" rel="stylesheet" type="text/css">
+<script src="P://MyDocuments/EWM/Mockup/Library/vendor/angular.js"></script>
+<script src="P://MyDocuments/EWM/Mockup/Library/controller.js"></script>
+<link rel="stylesheet" type="text/css" href="P://MyDocuments/EWM/Mockup/Library/vendor/jquery-ui-1.10.4.custom.css" />
+<script type="text/javascript" src="P://MyDocuments/EWM/Mockup/Library/vendor/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="P://MyDocuments/EWM/Mockup/Library/vendor/jquery-ui-1.10.4.custom.js"></script>
+    <script type="text/javascript">
+          $(document).ready(
+            function () {
+                $("#accordion").accordion();
+            });
+    </script>
+</head>
+<body ng-controller="epicCtrl">
+<nav class="navbar navbar-fixed-bottom" role="navigation">
+<div class="navbar-inner box-glossy">
+  <div class="container-fluid">
+
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+	<li><i class="glyphicon glyphicon-search icon-white glossy"></i></li>
+	<li><i class="glyphicon glyphicon-comment icon-white glossy"></i></li>
+	<li><i class="glyphicon glyphicon-bookmark icon-white glossy"></i></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+
+  </div><!-- /.container-fluid -->
+
+</div>
+</nav>
+<div class="container full-width">
+	
+	<div class="row" style="height: 50px">
+		<div id="top-panel" class="col-sm-12 box-glossy">
+			
+			<div class="col-sm-4"><h3 class="glossy">Helicopter View<h3></div>
+				
+			<div class="btn-group pull-right">
+			  <button type="button" class="btn dropdown-toggle transparent glossy" data-toggle="dropdown">
+			    Currency <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu">
+			    <li ng-repeat="currency in currencies" ng-click="chgCurrency(currency)">{{currency.name}}</li>
+			  </ul>
+			</div>
+			
+		</div>
+	</div>
+	
+	<div class="row" style="height: 668px">
+		
+		<div class="col-sm-8" style="height: 100%">
+		  <div id="chart" class="row" style="height: 75%;"></div>
+		  <div id="insight" class="row" style="height: 25%;">
+		    <div class="col-sm-6 insight-block" ng-repeat="article in articles">
+		    	<img class="col-sm-4" ng-src="{{article.img}}">
+		    	<div class="col-sm-8">
+			    	<h5 class="insight-label header-font" style="background-color: {{article.color}};">{{article.label}}</h5>
+			    	<h5>{{article.title}}</h5>
+		    	</div>
+		    </div>
+		  </div>
+		</div>
+		
+		<div id="right-panel" class="col-sm-4">
+			<div id="accordion">
+				    <h2 class="box-glossy header-font">Top Positions</h2>
+            <div class="body-font">
+                <div class="panel transparent">
+                	<div class="btn-group btn-group-xs pull-right">
+  									<button type="button" class="btn btn-range" ng-repeat="range in ranges" ng-click="chgRange(range)">{{range}}</button>
+									</div>
+                	<table class="table">
+                		<thead>
+                			<tr>
+                				<th>Asset</th>
+                				<th>Market Value/{{currency}}</th>
+                				<th>Perf/{{time_range}}</th>
+                			</tr>
+                		</thead>
+                		<tbody>
+                			<tr ng-repeat="asset in assets">
+                				<td>{{asset.name}}</td>
+                				<td>{{format(currency_sign, asset.volume)}}</td>
+                				<td>{{asset.perf}}%</td>
+                			</tr>
+                		</tbody>
+  								</table>
+                </div>
+            </div>
+            
+				    <h2 class="box-glossy header-font">Winners</h2>
+            <div>
+                <p>dummy barebone</p>
+            </div>
+            
+				    <h2 class="box-glossy header-font">Losers</h2>
+            <div>
+                <p>dummy barebone</p>
+            </div>
+            
+            <h2 class="box-glossy header-font">Analysis Spotlights</h2>
+            <div>
+                <p>dummy barebone</p>
+            </div>
+            
+            <h2 class="box-glossy header-font">Recent Transactions</h2>
+            <div>
+                <p>dummy barebone</p>
+            </div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript" src="P://MyDocuments/EWM/Mockup/Library/vendor/bootstrap.min.js"></script>
+<script type="text/javascript" src="P://MyDocuments/EWM/Mockup/Library/vendor/d3.v3.min.js"></script>
+<script type="text/javascript" src="P://MyDocuments/EWM/Mockup/Library/ptfl_treemap.js"></script>
+</body>
+</html>
