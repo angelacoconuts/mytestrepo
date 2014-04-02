@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="epic">
+  <head>
+    <link href="P://MyDocuments/EWM/Mockup/Library/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="P://MyDocuments/EWM/Mockup/Library/main.css" rel="stylesheet">
+    <link href="P://MyDocuments/EWM/Mockup/Library/world-map.css" rel="stylesheet">
+    <link href="P://MyDocuments/EWM/Mockup/Library/ptfl_treemap.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Fanwood+Text:400italic" rel="stylesheet" type="text/css">
+    <script src="P://MyDocuments/EWM/Mockup/Library/vendor/angular.js"></script>
+    <script src="P://MyDocuments/EWM/Mockup/Library/controller.js"></script>
+    <link rel="stylesheet" type="text/css" href="P://MyDocuments/EWM/Mockup/Library/vendor/jquery-ui-1.10.4.custom.css" />
+    <script type="text/javascript" src="P://MyDocuments/EWM/Mockup/Library/vendor/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="P://MyDocuments/EWM/Mockup/Library/vendor/jquery-ui-1.10.4.custom.js"></script>
+  </head>
+  <body ng-controller="epicCtrl">
+    <div id="overlay"></div>
+    <nav id="bottom-panel"  class="navbar navbar-fixed-bottom" role="navigation">
+      <div class="navbar-inner box-glossy">
+	<div class="container-fluid">
+	  
+	  <div class="collapse navbar-collapse">
+	    <ul class="nav navbar-nav navbar-right">
+	      <li><i class="glyphicon glyphicon-search icon glossy"></i></li>
+	      <li><i class="glyphicon glyphicon-comment icon glossy"></i></li>
+	      <li><i class="glyphicon glyphicon-bookmark icon glossy"></i></li>
+	    </ul>
+	  </div><!-- /.navbar-collapse -->
+	  
+	</div><!-- /.container-fluid -->
+
+      </div>
+    </nav>
+    <div class="container full-width">
+      <div id="top-panel" class="row" style="height: 50px">
+	<div class="col-sm-12 box-glossy">
+
+	  <div id="portfolio-sel" class="btn-group pull-left col-sm-4">
+	    <button type="button" class="btn dropdown-toggle transparent body-font" data-toggle="dropdown" ng-click="focus('portfolio-sel')">
+	      <h3 class="glossy">{{portfolio_sel.name}} <span class="caret"></span></h3>
+	    </button>
+	    <ul class="dropdown-menu transparent" role="menu">
+	      <li class="dropdown-grid dropdown-grid-agg" ng-click="selPortfolio(portfolio_all); blur('portfolio-sel')">
+		{{portfolio_all.name}}
+	      </li>
+	      <li>
+		<div class="row">
+		  <ul class="col-sm-4 portfolio-list" ng-repeat="portfolios in portfolio_groups">
+		    <li class="dropdown-grid dropdown-grid-agg" ng-click="selPortfolio(portfolios); blur('portfolio-sel')">
+		      All {{portfolios.name}}
+		    </li>
+		    <li class="dropdown-grid" ng-repeat="portfolio in portfolios.children" ng-click="selPortfolio(portfolio); blur('portfolio-sel')">
+		      {{portfolio.bkc}} {{portfolio.name}} - {{portfolio.strategy}}
+		    </li>
+		  </ul>
+		</div>
+	      </li>
+	    </ul>
+	  </div>
+	  
+	  <div id="tabs" class="col-sm-3">
+	    <div class="col-sm-3"><a href="P:/MyDocuments/EWM/Mockup/main_ptflcomp.html"><i class="glyphicon glyphicon-stats icon glossy"></i><p>Overview</p></a></div>
+	    <div class="col-sm-3"><a href="P:/MyDocuments/EWM/Mockup/main_assets.html"><i class="glyphicon glyphicon-adjust icon glossy"></i><p>Assets</p></a></div>
+	    <div class="col-sm-3 tab-active"><a href="P:/MyDocuments/EWM/Mockup/main_worldmap.html"><i class="glyphicon glyphicon-globe icon glossy"></i><p>Region</p></a></div>
+	    <div class="col-sm-3"><a href="#tabs-4"><i class="glyphicon glyphicon-usd icon glossy"></i><p>Currency</p></a></div>
+	  </div>
+	  
+	  <div id="currency-sel" class="btn-group pull-right">
+	    <button type="button" class="btn dropdown-toggle transparent body-font" data-toggle="dropdown" ng-click="focus('currency-sel')">
+	      <h5 class="glossy">{{currency_sel.name}} <span class="caret"></span></h5>
+	    </button>
+	    <ul class="dropdown-menu transparent" role="menu">
+	      <li class="dropdown-grid" ng-repeat="currency in currencies" ng-click="chgCurrency(currency); blur('currency-sel')">
+		<a>{{currency.name}} - {{currency.desp}} ({{currency.sign}})</a>
+	      </li>
+	    </ul>
+	  </div>
+	  
+	</div>
+      </div>
+      
+      <div class="row" style="height: 668px">
+	
+	<div class="col-sm-8" style="height: 100%">
+	  
+	  <div id="chart" class="row" style="height: 75%;">
+	    
+	    <div d3-map country-sel="country_sel" countries-asset="countries_asset"></div>
+	    <div d3-pie country-asset="country_sel.assets"></div>
+	    
+	    <div id="world-map">
+	      <div id="country-list" class="box-glossy">
+    		
+		<table class="table body-font">
+		  <tbody>
+		    <tr ng-repeat="country in countries_asset" ng-mouseover="selCountry(country)">
+		      <td><h6>{{country.name}}</h6></td>
+		    </tr>
+		  </tbody>
+		</table>
+		
+	      </div>
+	      <div id="pie" class="box-glossy">
+		<div id="pie-area"></div>
+		<h4 class="glossy">{{country_sel.name}}</h4>
+		<table class="table body-font">
+		  <thead>
+		    <tr>
+		      <th><h6>Asset</h6></th>
+		      <th><h6>Value/{{currency_sel.name}}<h6></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr ng-repeat="asset in country_sel.assets">
+		      <td><h6><svg width="10" height="10"><rect width="10" height="10" fill="{{asset.color}}"></rect></svg> {{asset.name}}</h6></td>
+		      <td><h6>{{format(currency_sel, asset.value)}}</h6></td>
+		    </tr>
+		  </tbody>
+		</table>
+	      </div>
+	    </div>
+	    
+	  </div>
+
+	  <div id="insight" class="row" style="height: 25%;">
+	    <div id="insight-block" class="col-sm-6" ng-repeat="article in articles">
+	      <h5 id="insight-label" class="body-font" style="background-color: {{article.color}};">{{article.label}}</h5>
+	      <img class="col-sm-4" ng-src="{{article.img}}">
+	      <div class="col-sm-8">
+		<h5>{{article.title}}</h5>
+	      </div>
+	    </div>
+	  </div>
+	  
+	</div>
+	
+	<div id="right-panel" class="col-sm-4">
+	  <div id="accordion">
+	    <h2 class="box-glossy header-font">Top Positions</h2>
+            <div class="body-font">
+              <div class="panel transparent">
+                <div class="btn-group btn-group-xs pull-right">
+  		  <button type="button" class="btn btn-range" ng-repeat="range in ranges" ng-click="chgRange(range)">{{range}}</button>
+		</div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Asset</th>
+                      <th>Market Value/{{currency_sel.name}}</th>
+                      <th>Perf/{{time_range}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="position in positions">
+                      <td>{{position.name}}</td>
+                      <td>{{currency_sel.sign}} {{format(currency_sel, position.volume)}}</td>
+                      <td>{{position.perf}}%</td>
+                    </tr>
+                  </tbody>
+  		</table>
+              </div>
+            </div>
+            
+	    <h2 class="box-glossy header-font">Winners</h2>
+            <div>
+              <p>dummy barebone</p>
+            </div>
+            
+	    <h2 class="box-glossy header-font">Losers</h2>
+            <div>
+              <p>dummy barebone</p>
+            </div>
+            
+            <h2 class="box-glossy header-font">Analysis Spotlights</h2>
+            <div>
+              <p>dummy barebone</p>
+            </div>
+            
+            <h2 class="box-glossy header-font">Recent Transactions</h2>
+            <div>
+              <p>dummy barebone</p>
+            </div>
+	  </div>
+	</div>
+	
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(
+      function () {
+      $("#accordion").accordion();
+      document.getElementById("overlay").style.display = 'none';                              
+      $("#country-list").find("table tr:first").addClass('highlight');
+      $("#country-list").find("tr").hover(function(e){
+      $('#country-list table').find('tr.highlight').removeClass('highlight');
+      $(this).addClass('highlight');
+      });                
+      });  					
+    </script>
+    <script type="text/javascript" src="P://MyDocuments/EWM/Mockup/Library/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="P://MyDocuments/EWM/Mockup/Library/topojson.v1.min.js"></script>
+  </body>
+</html>
