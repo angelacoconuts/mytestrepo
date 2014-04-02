@@ -1,0 +1,196 @@
+* {
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+}
+a {
+	text-decoration: none;
+}
+body {
+    position: relative;
+    background-color: #111;
+    width: 100%;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
+.header-font {
+    font-family: Georgia, Times, "Times New Roman", serif;
+    color: #eee;
+}
+.body-font {
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    color: #eee;
+}
+.full-width{
+    width: 100%;
+}
+.transparent {
+    background-color: transparent;
+}
+.glossy {
+    background: -webkit-linear-gradient(#fff, #bbb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.box-glossy{
+    box-shadow: inset 0px 0px 60px #444;
+}
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 10;
+}
+.navbar-inner {
+    background-color: #111;
+    height: 50px;
+}
+#top-panel .btn-group {
+    color: #eee;
+    padding: 0px;
+    margin: 0px; 
+}
+#top-panel .btn-group button {
+    padding: 0px;
+    margin: 0px;
+}
+#portfolio-sel .portfolio-list>li:hover, .portfolio-list>li:focus{
+	  color: #111;
+		background-color: #eee;
+		cursor:pointer;
+}
+#portfolio-sel .dropdown-grid-agg:hover, .dropdown-grid-agg:focus{
+	  color: #111;
+		background-color: #eee;
+		cursor:pointer;
+}
+#portfolio-sel h3 {
+    margin-top: 12px;
+    text-indent: 10px;
+    font: 22px 'Fanwood Text', serif;
+}
+#portfolio-sel .dropdown-menu {
+    min-width: 900px;
+}
+#portfolio-sel .portfolio-list {
+		list-style-type: none;
+}
+#portfolio-sel .dropdown-grid {
+    text-indent: 5px;
+    border: 1px solid #eee;
+    color: #eee;
+    line-height: 2;
+    margin: 8px;
+    background-color: #111;
+}
+#portfolio-sel .dropdown-grid-agg {
+    background-color: #444;
+    border: 1px solid #eee;
+    color: #eee;
+}
+#currency-sel li a{
+		color: #eee;
+}
+#currency-sel li a:hover, a:focus{
+		color: #111;
+		cursor:pointer;
+}
+#currency-sel h5 {
+    margin-top: 15px;
+}
+#currency-sel .dropdown-menu {
+    min-width: 250px;
+}
+#currency-sel .dropdown-grid {
+    text-indent: 10px;
+    border: 1px solid #eee;
+    color: #eee;
+    line-height: 2;
+    margin: 8px;
+    background-color: #111;
+}
+#market-value h3{
+	  margin-top: 20px;
+    text-indent: 20px;
+    font-family: AG_regular,Arial,Helvetica,sans-serif;
+}
+#right-panel {
+    height: 100%;
+    padding: 0;
+}
+#accordion h2 {
+    padding: 0.5em 1em;
+    color: #eee;
+    font-size: 1em;
+}
+#accordion div {
+    padding: 0 0.3em;
+    margin: 0;
+    font-size: 12px;
+}
+#accordion .ui-icon{
+		display: none;
+}
+.btn-range {
+    color: #666;
+    background-color: #eee;
+    border: 1.8px solid #111;
+}
+#insight-block {
+    height: 50%; 
+    padding:12px 12px;
+}
+#insight-label {
+    color: #eee;
+    text-indent: 5px;
+    width: 100px;
+    padding: 1.5px 0px;
+    margin-bottom: 0;
+    position: absolute;
+    opacity: 0.9;
+    z-index: 5;
+}
+#insight-block img {
+    padding: 0px;
+    height: 65px;
+    width: 100px;
+    position: relative;
+}
+#insight-block h5 {
+    color: #eee;
+    margin-top: 0px;
+}
+#insight-block div {
+		padding: 0px 8px;
+}
+.icon{
+    font-size: 1.2em;
+    margin: auto;
+    padding: 16px 20px 10px 0px;
+}
+#top-panel .icon{
+    padding: 10px 0px 4px 0px;
+}
+#top-panel .col-sm-3{
+    padding: 0;
+    margin: 0px, 5px;
+    text-align:center;
+}
+#top-panel a:hover, a:active, a:focus{
+    cursor: pointer;
+    text-decoration: none;
+}
+#top-panel p{
+    font-size: 0.8em;
+    margin: 0;
+    margin-bottom: 4px;
+    color: #eee;
+}
+#top-panel .tab-active {
+	 box-shadow:  inset 0px 0px 5px 2px #888, inset 0px 0px 5px 5px #333;
+}
+#bottom-panel .icon:hover, .icon:active{
+		cursor: pointer;
+}
