@@ -1,0 +1,77 @@
+.country{
+  stroke: #eee;
+  stroke-width: 1px;
+}
+#world-map {
+  margin:auto;  
+  width:100%;
+  height: 100%;
+  overflow:hidden;
+  background: transparent;
+  position: relative
+}
+#world-map text {
+	color: #eee;
+	padding: 5px 10px;
+	margin: 10px;
+	border: 1px solid #eee;
+	position: absolute;
+	background: #111;
+	top: 0;
+	left: 0;
+	opacity: 0.8;
+}
+#world-map text:hover,text:active,text:focus {
+	background: #eee;
+	color: #111;
+	cursor: pointer;
+}
+#pie {
+	position: absolute;
+	background: #222;
+	bottom: 0;
+	margin: 0px 0px 10px 20px;
+	width: 200px;
+	padding: 10px 5px;
+	opacity: 0.8;
+}
+#country-list {
+	position: absolute;
+	background: #222;
+	top: 0;
+	right: 0;
+	margin: 10px 10px 0px 0px;
+	padding: 0;
+	width: 80px;
+	opacity: 0.8;
+}
+#country-list table{
+	margin: 0px;
+}
+#country-list table td{
+	border-top: none;
+}
+/*
+#country-list table tr:hover, table tr:focus, table tr:active {
+	background: #eee;
+	color: #111;
+	cursor: pointer;
+}
+*/
+.highlight {
+	background: #eee;
+	color: #111;
+	cursor: pointer;
+}
+#pie-area{
+	text-align: center;
+}
+#pie h4,h6{
+	margin: 0px;
+}
+#pie h4{
+	text-align: center;
+}
+#pie table{
+	margin-bottom: 0px;
+}
